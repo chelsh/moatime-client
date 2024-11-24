@@ -166,8 +166,8 @@ export default function Event() {
           <div className="flex-1 space-y-2 w-1/2">
             <div className="text-xl font-semibold">Your schedule</div>
             <div className="flex flex-row">
-              <div className="flex flex-col text-right w-20 text-sm">
-                <div className="h-14" />
+              <div className="flex flex-col text-right w-16 text-sm">
+                <div className="h-12" />
                 {times.map((time, idx) => (
                   <div key={idx} className="h-10 pr-1">{`${time} ${
                     time < 12 ? "AM" : "PM"
@@ -180,13 +180,13 @@ export default function Event() {
 
                   return (
                     <div key={idx} className="flex flex-col">
-                      <div className="h-14 w-11 *:text-center">
-                        <div className="">
+                      <div className="h-12 w-11 *:text-center">
+                        <div className="text-sm">
                           {`${date
                             .toLocaleString("default", { month: "long" })
                             .slice(0, 3)}`}
                         </div>
-                        <div className="text-xl">{`${date.getDate()}`}</div>
+                        <div className="text-lg">{`${date.getDate()}`}</div>
                       </div>
                       {times.map((time, idx) => (
                         <div key={idx} className="h-10 border-2" />
@@ -200,8 +200,8 @@ export default function Event() {
           <div className="flex-1 space-y-2 w-1/2">
             <div className="text-xl font-semibold">Team&apos;s schedule</div>
             <div className="flex flex-row">
-              <div className="flex flex-col text-right w-20 text-sm">
-                <div className="h-14" />
+              <div className="flex flex-col text-right w-16 text-sm">
+                <div className="h-12" />
                 {times.map((time, idx) => (
                   <div key={idx} className="h-10 pr-1">{`${time} ${
                     time < 12 ? "AM" : "PM"
@@ -214,13 +214,13 @@ export default function Event() {
 
                   return (
                     <div key={idx} className="flex flex-col">
-                      <div className="h-14 w-11 *:text-center">
-                        <div className="">
+                      <div className="h-12 w-11 *:text-center">
+                        <div className="text-sm">
                           {`${date
                             .toLocaleString("default", { month: "long" })
                             .slice(0, 3)}`}
                         </div>
-                        <div className="text-xl">{`${date.getDate()}`}</div>
+                        <div className="text-lg">{`${date.getDate()}`}</div>
                       </div>
                       {times.map((time, idx) => (
                         <div key={idx} className="h-10 border-2" />
