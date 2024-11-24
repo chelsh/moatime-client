@@ -80,7 +80,7 @@ export default function Event() {
     };
 
     fetchToken();
-  }, []);
+  }, [pathname, router]);
 
   return (
     <div className="h-full w-full flex items-center flex-col gap-8">
@@ -198,7 +198,7 @@ export default function Event() {
             </div>
           </div>
           <div className="flex-1 space-y-2 w-1/2">
-            <div className="text-xl font-semibold">Team's schedule</div>
+            <div className="text-xl font-semibold">Team&apos;s schedule</div>
             <div className="flex flex-row">
               <div className="flex flex-col text-right w-20 text-sm">
                 <div className="h-14" />
