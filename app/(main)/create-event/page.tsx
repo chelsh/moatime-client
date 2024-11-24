@@ -41,7 +41,7 @@ export default function CreateEvent() {
           aria-hidden="true"
           className="mr-auto cursor-pointer size-12"
           onClick={() => {
-            router.back();
+            router.push("/board");
           }}
         >
           <path

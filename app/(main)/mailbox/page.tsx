@@ -45,7 +45,6 @@ export default function MailBox() {
         const eventRes = await getMyEvents(accessToken);
         setMyEvents(eventRes.events);
 
-
         const idRes = await getMyId(accessToken);
         setMyId(idRes.id);
       } else {
@@ -69,7 +68,7 @@ export default function MailBox() {
           aria-hidden="true"
           className="mr-auto cursor-pointer size-12"
           onClick={() => {
-            router.back();
+            router.push("/board");
           }}
         >
           <path
