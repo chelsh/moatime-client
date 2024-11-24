@@ -127,16 +127,22 @@ export default function Board() {
           {myEvents.map((event, idx) => (
             <div
               key={idx}
-              className="w-full bg-neutral-200 cursor-pointer rounded-lg h-20 px-6 flex flex-row justify-between items-center"
-              onClick={() => {
-                router.push(`/event/${event.id}`);
-              }}
+              className="w-full bg-neutral-200 rounded-lg h-20 px-6 flex flex-row justify-between items-center"
             >
-              <div className="flex flex-col ">
+              <div
+                className="flex flex-col w-full cursor-pointer"
+                onClick={() => {
+                  router.push(`/event/${event.id}`);
+                }}
+              >
                 <span className="text-2xl font-semibold">{event.title}</span>
                 <span>
-                  host: {event.hostName}{" "}
-                  {event.hostId === myId ? <span className="bg-neutral-400 ml-1 text-xs text-white px-2 py-[2px] rounded-2xl">host</span> : null}
+                  host: {event.hostName}
+                  {event.hostId === myId ? (
+                    <span className="bg-neutral-400 ml-1 text-xs text-white px-2 py-[2px] rounded-2xl">
+                      host
+                    </span>
+                  ) : null}
                 </span>
               </div>
               {event.hostId === myId ? (
@@ -150,19 +156,22 @@ export default function Board() {
                   aria-hidden="true"
                   className="size-8 cursor-pointer hover:text-white"
                   onClick={async () => {
-                    alert(
-                      `Are you sure you want to delete the event: ${event.title}?`
-                    );
-                    const res = await callAPI({
-                      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/event/${event.id}/delete`!,
-                      method: "DELETE",
-                      isPrivate: true,
-                      accessToken: token,
-                    });
-                    if (res.status === 204) {
-                      setMyEvents((prev) =>
-                        prev.filter((e) => e.id !== event.id)
-                      );
+                    if (
+                      confirm(
+                        `Are you sure you want to delete the event: ${event.title}?`
+                      )
+                    ) {
+                      const res = await callAPI({
+                        url: `${process.env.NEXT_PUBLIC_SERVER_URL}/event/${event.id}/delete`!,
+                        method: "DELETE",
+                        isPrivate: true,
+                        accessToken: token,
+                      });
+                      if (res.status === 204) {
+                        setMyEvents((prev) =>
+                          prev.filter((e) => e.id !== event.id)
+                        );
+                      }
                     }
                   }}
                 >
@@ -183,16 +192,23 @@ export default function Board() {
                   aria-hidden="true"
                   className="size-8 cursor-pointer hover:text-white"
                   onClick={async () => {
-                    alert(
-                      `Are you sure you want to leave the event: ${event.title}?`
-                    );
-                    const res = await callAPI({
-                      url: `${process.env.NEXT_PUBLIC_SERVER_URL}/event/${event.id}/exit`!,
-                      method: "DELETE",
-                      isPrivate: true,
-                      accessToken: token,
-                    });
-                    if (res.status === 204) router.refresh();
+                    if (
+                      confirm(
+                        `Are you sure you want to leave the event: ${event.title}?`
+                      )
+                    ) {
+                      const res = await callAPI({
+                        url: `${process.env.NEXT_PUBLIC_SERVER_URL}/event/${event.id}/exit`!,
+                        method: "DELETE",
+                        isPrivate: true,
+                        accessToken: token,
+                      });
+                      if (res.status === 204) {
+                        setMyEvents((prev) =>
+                          prev.filter((e) => e.id !== event.id)
+                        );
+                      }
+                    }
                   }}
                 >
                   <path

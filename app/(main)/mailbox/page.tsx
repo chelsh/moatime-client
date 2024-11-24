@@ -177,7 +177,7 @@ export default function MailBox() {
                         onClick={async () => {
                           if (
                             confirm(
-                              `Are you sure you want to join the event: ${event.title}?`
+                              `Are you sure you want to refuse the event: ${event.title}?`
                             )
                           ) {
                             const res = await callAPI({
@@ -211,19 +211,22 @@ export default function MailBox() {
                       aria-hidden="true"
                       className="size-8 cursor-pointer hover:text-white"
                       onClick={async () => {
-                        alert(
-                          `Are you sure you want to delete the event: ${event.title}?`
-                        );
-                        const res = await callAPI({
-                          url: `${process.env.NEXT_PUBLIC_SERVER_URL}/event/${event.id}/delete`!,
-                          method: "DELETE",
-                          isPrivate: true,
-                          accessToken: token,
-                        });
-                        if (res.status === 204) {
-                          setMyEvents((prev) =>
-                            prev.filter((e) => e.id !== event.id)
-                          );
+                        if (
+                          confirm(
+                            `Are you sure you want to delete the event: ${event.title}?`
+                          )
+                        ) {
+                          const res = await callAPI({
+                            url: `${process.env.NEXT_PUBLIC_SERVER_URL}/event/${event.id}/delete`!,
+                            method: "DELETE",
+                            isPrivate: true,
+                            accessToken: token,
+                          });
+                          if (res.status === 204) {
+                            setMyEvents((prev) =>
+                              prev.filter((e) => e.id !== event.id)
+                            );
+                          }
                         }
                       }}
                     >
